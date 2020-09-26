@@ -51,6 +51,7 @@ dependencies {
 
     def koin_version = "2.1.6"
     implementation "org.koin:koin-androidx-scope:$koin_version"
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
 
     implementation "joda-time:joda-time:2.10.6"
 
