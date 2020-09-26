@@ -49,4 +49,9 @@ dependencies {
     def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
+    def koin_version = "2.1.6"
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+
+    implementation "joda-time:joda-time:2.10.6"
+
 }
