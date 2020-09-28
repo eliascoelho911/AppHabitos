@@ -49,7 +49,7 @@ class TelaHabitosFragment : Fragment() {
                 Categoria("Lazer", R.color.vermelhoA400)
             )
         )
-        fragment_item_habitos_categorias.adapter = categoriasAdapter
+        categoriasRecyclerView.adapter = categoriasAdapter
     }
 
 }

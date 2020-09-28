@@ -12,7 +12,7 @@
             type="br.com.eliascoelho911.habitos.ui.recyclerview.adapter.CategoriasAdapter.ElementosItemCategoria" />
 
         <variable
-            name="onClickBotaoAlterarEstado"
+            name="onClick"
             type="android.view.View.OnClickListener" />
     </data>
 
@@ -21,7 +21,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
+        android:onClick="@{onClick}"
         android:background="@{elementos.background}"
         android:backgroundTint="@{categoria.getColor()}"
         app:cardElevation="4dp"
@@ -59,7 +60,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/botao_para_expandir_ou_retrair_os_habitos_da_categoria"
-                android:onClick="@{onClickBotaoAlterarEstado}"
+                android:onClick="@{onClick}"
                 android:src="@{elementos.imagemBotao}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

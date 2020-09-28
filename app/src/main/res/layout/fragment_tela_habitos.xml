@@ -39,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@id/fragment_tela_habitos_saudacao"
-            app:layout_constraintStart_toStartOf="@id/fragment_tela_habitos_saudacao"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fragment_tela_habitos_saudacao"
             tools:itemCount="3"
             tools:listitem="@layout/item_categoria" />

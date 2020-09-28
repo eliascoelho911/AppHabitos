@@ -40,7 +40,7 @@ class CategoriasAdapter(private val categorias: List<Categoria>) :
             binding.categoria = categoria
             val elementosItemCategoria = ElementosItemCategoria()
             binding.elementos = elementosItemCategoria
-            binding.onClickBotaoAlterarEstado = View.OnClickListener {
+            binding.onClick = View.OnClickListener {
                 elementosItemCategoria.alterouEstado()
             }
         }
