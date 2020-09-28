@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Habitos</string>
+    <string name="botao_para_expandir_ou_retrair_os_habitos_da_categoria">Botão para expandir ou retrair os hábitos da categoria</string>
 </resources>

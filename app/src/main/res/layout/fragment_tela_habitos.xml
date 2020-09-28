@@ -16,15 +16,32 @@
 
         <TextView
             android:id="@+id/fragment_tela_habitos_saudacao"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/poppins_bold"
             android:text="@{saudacao}"
             android:textColor="@android:color/black"
             android:textSize="26sp"
+            android:maxLines="1"
+            app:autoSizeMaxTextSize="26sp"
+            app:autoSizeMinTextSize="20sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Bem vindo, Elias!" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_item_habitos_categorias"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@id/fragment_tela_habitos_saudacao"
+            app:layout_constraintStart_toStartOf="@id/fragment_tela_habitos_saudacao"
+            app:layout_constraintTop_toBottomOf="@id/fragment_tela_habitos_saudacao"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_categoria" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
