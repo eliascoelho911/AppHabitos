@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.eliascoelho911.habitos.R
+import br.com.eliascoelho911.habitos.extensions.formata
 import br.com.eliascoelho911.habitos.ui.viewmodel.MainActivityViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -23,10 +24,11 @@ class TelaHabitosFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainActivityViewModel.configuraInterfaceDaActivity(exibirCalendarioHorizontal = true)
-//        calendarioHorizontalAdapter.diaSelecionado.observe(this, { diaSelecionado ->
-//            mainActivityViewModel.alteraTitulo(diaSelecionado?.run { formata("dd 'de' MMMMM") }
-//                ?: getString(R.string.app_name))
-//        })
+        mainActivityViewModel.diaSelecionadoNoCalendarioHorizontal.observe(this, { diaSelecionado ->
+            mainActivityViewModel.alteraTitulo(
+                diaSelecionado?.formata("dd 'de' MMMMM") ?: getString(R.string.app_name)
+            )
+        })
     }
 
 }
