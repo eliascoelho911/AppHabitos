@@ -27,8 +27,8 @@ class TelaHabitosFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainActivityViewModel.configuraInterfaceDaActivity(exibirCalendarioHorizontal = true)
-        mainActivityViewModel.diaSelecionadoNoCalendarioHorizontal.observe(this, { diaSelecionado ->
+        mainActivityViewModel.configuraInterfaceDaActivity(exibirCalendario = true)
+        mainActivityViewModel.diaSelecionadoNoCalendario.observe(this, { diaSelecionado ->
             mainActivityViewModel.alteraTitulo(
                 diaSelecionado?.formata("dd 'de' MMMMM") ?: getString(R.string.app_name)
             )

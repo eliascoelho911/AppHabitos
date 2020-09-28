@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import br.com.eliascoelho911.habitos.R
 import br.com.eliascoelho911.habitos.databinding.ItemCalendarioHorizontalBinding
@@ -18,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModel()
     private val dias = LocalDate.now().criaIntervaloDeDias(-13)
-    private val calendarioRadioGroup by lazy {
+    private val calendarioRadioGroup: RadioGroup by lazy {
         activity_main_calendario_group
     }
     private val calendarioLayout by lazy {
@@ -40,21 +41,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun configuraCalendario() {
-        viewModel.exibirCalendarioHorizontal.observe(this, {
+        viewModel.exibirCalendario.observe(this, {
             if (it == true) {
                 mostraCalendario()
-                if (calendarioAindaNaoFoiCriado()) {
-                    criaEAdicionaDiasNoCalendario()
-                    selecionaUltimoDiaDoCalendario()
-                    moveScrollParaODiaSelecionadoNoCalendario()
-                }
+                criaEAdicionaDiasNoCalendario()
+                val idRadioButton = (viewModel.idRadioButtonSelecionadoNoCalendario
+                    ?: calendarioRadioGroup.getChildAt(calendarioRadioGroup.childCount - 1).id)
+                selecionaDiaDoCalendario(idRadioButton)
             } else {
                 escondeCalendario()
             }
         })
     }
-
-    private fun calendarioAindaNaoFoiCriado() = calendarioRadioGroup.childCount == 0
 
     private fun escondeCalendario() {
         calendarioLayout.visibility = View.GONE
@@ -64,14 +62,14 @@ class MainActivity : AppCompatActivity() {
         calendarioLayout.visibility = View.VISIBLE
     }
 
-    private fun selecionaUltimoDiaDoCalendario() {
-        calendarioRadioGroup.check(calendarioRadioGroup.childCount)
-        viewModel.atualizaDiaSelecionadoNoCalendarioHorizontal(dias.last())
+    private fun selecionaDiaDoCalendario(id: Int) {
+        calendarioRadioGroup.check(id)
+        viewModel.atualizaDiaSelecionadoNoCalendario(dias[id], id)
     }
 
     private fun criaEAdicionaDiasNoCalendario() {
-        dias.forEach { dia ->
-            val binding = inflaItemCalendario(calendarioRadioGroup)
+        dias.forEachIndexed { index, dia ->
+            val binding = inflaItemCalendario(calendarioRadioGroup, index)
             binding.dia = dia.formata("dd\nMMM")
             atualizaTituloAoClicarNoDia(binding, dia)
             calendarioRadioGroup.addView(binding.root)
@@ -83,26 +81,29 @@ class MainActivity : AppCompatActivity() {
         dia: LocalDate
     ) {
         binding.onClick = View.OnClickListener {
-            viewModel.atualizaDiaSelecionadoNoCalendarioHorizontal(dia)
+            viewModel.atualizaDiaSelecionadoNoCalendario(dia, it.id)
         }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        if (viewModel.exibirCalendarioHorizontal.value == true)
-            moveScrollParaODiaSelecionadoNoCalendario()
+        if (viewModel.exibirCalendario.value == true) {
+            val idRadioButtonSelecionado = (viewModel.idRadioButtonSelecionadoNoCalendario
+                ?: calendarioRadioGroup.childCount - 1)
+            moveScrollPara(idRadioButtonSelecionado)
+        }
     }
 
-    private fun moveScrollParaODiaSelecionadoNoCalendario() {
+    private fun moveScrollPara(index: Int) {
         val radioButtonSelecionado =
-            calendarioRadioGroup.getChildAt(calendarioRadioGroup.childCount - 1)
+            calendarioRadioGroup.getChildAt(index)
         calendarioLayout.scrollTo(radioButtonSelecionado.left, radioButtonSelecionado.top)
     }
 
-    private fun inflaItemCalendario(parent: ViewGroup): ItemCalendarioHorizontalBinding {
+    private fun inflaItemCalendario(parent: ViewGroup, id: Int): ItemCalendarioHorizontalBinding {
         val inflater = LayoutInflater.from(this)
         val binding = ItemCalendarioHorizontalBinding.inflate(inflater, parent, false)
-        binding.root.item_calendario_horizontal_botao.id = View.generateViewId()
+        binding.root.item_calendario_horizontal_botao.id = id
 
         return binding
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CalendarioRadioGroup">
+        <attr name="data_inicio" format="string" />
+        <attr name="data_final" format="string" />
+    </declare-styleable>
+</resources>

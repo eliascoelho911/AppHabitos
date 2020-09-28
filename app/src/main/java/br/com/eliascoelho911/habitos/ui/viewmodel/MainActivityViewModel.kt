@@ -7,20 +7,23 @@ import br.com.eliascoelho911.habitos.util.getString
 import org.joda.time.LocalDate
 
 class MainActivityViewModel : ViewModel() {
-    val exibirCalendarioHorizontal = MutableLiveData(false)
-    val diaSelecionadoNoCalendarioHorizontal: MutableLiveData<LocalDate?> = MutableLiveData(null)
+    val exibirCalendario = MutableLiveData(false)
+    val diaSelecionadoNoCalendario: MutableLiveData<LocalDate?> = MutableLiveData(null)
+    var idRadioButtonSelecionadoNoCalendario: Int? = null
+        private set
     val titulo = MutableLiveData(getString(R.string.app_name))
 
     fun configuraInterfaceDaActivity(
-        exibirCalendarioHorizontal: Boolean = false,
+        exibirCalendario: Boolean = false,
         titulo: String = getString(R.string.app_name)
     ) {
-        this.exibirCalendarioHorizontal.value = exibirCalendarioHorizontal
+        this.exibirCalendario.value = exibirCalendario
         this.titulo.value = titulo
     }
 
-    fun atualizaDiaSelecionadoNoCalendarioHorizontal(dia: LocalDate) {
-        diaSelecionadoNoCalendarioHorizontal.value = dia
+    fun atualizaDiaSelecionadoNoCalendario(dia: LocalDate, idRadioButton: Int) {
+        diaSelecionadoNoCalendario.value = dia
+        idRadioButtonSelecionadoNoCalendario = idRadioButton
     }
 
     fun alteraTitulo(titulo: String) {
