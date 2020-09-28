@@ -10,7 +10,6 @@ import br.com.eliascoelho911.habitos.ui.viewmodel.MainActivityViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class TelaHabitosFragment : Fragment() {
-
     private val mainActivityViewModel: MainActivityViewModel by sharedViewModel()
 
     override fun onCreateView(
@@ -23,7 +22,11 @@ class TelaHabitosFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainActivityViewModel.configuraInterface(exibirCalendarioHorizontal = true)
+        mainActivityViewModel.configuraInterfaceDaActivity(exibirCalendarioHorizontal = true)
+//        calendarioHorizontalAdapter.diaSelecionado.observe(this, { diaSelecionado ->
+//            mainActivityViewModel.alteraTitulo(diaSelecionado?.run { formata("dd 'de' MMMMM") }
+//                ?: getString(R.string.app_name))
+//        })
     }
 
 }

@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="dia"
             type="String" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <CheckBox
-            android:id="@+id/item_calendario_horizontal_botao"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/background_item_calendario_horizontal"
-            android:button="@android:color/transparent"
-            android:fontFamily="@font/poppins_semibold"
-            android:lineSpacingMultiplier="0.7"
-            android:gravity="center"
-            android:textColor="@color/cor_item_calendario_horizontal"
-            android:textSize="12sp"
-            android:text="@{dia}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <RadioButton
+        android:id="@+id/item_calendario_horizontal_botao"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/background_item_calendario_horizontal"
+        android:button="@android:color/transparent"
+        android:fontFamily="@font/poppins_semibold"
+        android:gravity="center"
+        android:lineSpacingMultiplier="0.7"
+        android:onClick="@{onClick}"
+        android:text="@{dia}"
+        android:textColor="@color/cor_item_calendario_horizontal"
+        android:textSize="12sp" />
 </layout>

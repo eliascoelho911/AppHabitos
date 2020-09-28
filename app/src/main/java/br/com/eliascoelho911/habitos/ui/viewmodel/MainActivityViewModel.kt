@@ -2,11 +2,22 @@ package br.com.eliascoelho911.habitos.ui.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.eliascoelho911.habitos.R
+import br.com.eliascoelho911.habitos.util.getString
 
 class MainActivityViewModel : ViewModel() {
     val exibirCalendarioHorizontal = MutableLiveData(false)
+    val titulo = MutableLiveData(getString(R.string.app_name))
 
-    fun configuraInterface(exibirCalendarioHorizontal: Boolean) {
+    fun configuraInterfaceDaActivity(
+        exibirCalendarioHorizontal: Boolean = false,
+        titulo: String = getString(R.string.app_name)
+    ) {
         this.exibirCalendarioHorizontal.value = exibirCalendarioHorizontal
+        this.titulo.value = titulo
+    }
+
+    fun alteraTitulo(titulo: String) {
+        this.titulo.value = titulo
     }
 }
