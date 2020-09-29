@@ -14,37 +14,47 @@
         <variable
             name="onClick"
             type="android.view.View.OnClickListener" />
+
+        <import type="android.view.View" />
     </data>
 
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:onClick="@{onClick}"
-        android:background="@{elementos.background}"
-        android:backgroundTint="@{categoria.getColor()}"
-        app:cardElevation="5dp"
-        tools:background="@drawable/background_item_categoria_contraido"
-        tools:backgroundTint="@color/verdeA400">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/item_categoria_categoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@{elementos.background}"
+            android:backgroundTint="@{categoria.getColor()}"
+            android:elevation="2dp"
+            android:onClick="@{onClick}"
+            android:padding="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:background="@drawable/background_item_categoria_expandido"
+            tools:backgroundTint="@color/verde400">
 
             <TextView
                 android:id="@+id/item_categoria_nome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:maxLines="1"
                 android:text="@{categoria.nome}"
                 android:textColor="@android:color/white"
-                android:textSize="23sp"
-                app:autoSizeMaxTextSize="23sp"
-                app:autoSizeMinTextSize="19sp"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="17sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -55,9 +65,8 @@
 
             <ImageButton
                 android:id="@+id/item_categoria_alterar_estado"
-                android:layout_width="wrap_content"
+                android:layout_width="24dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/botao_para_expandir_ou_retrair_os_habitos_da_categoria"
                 android:onClick="@{onClick}"
@@ -65,7 +74,22 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_expandir_categoria" />
+                tools:src="@drawable/ic_contrair_categoria" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/item_categoria_habitos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:visibility="@{elementos.estaExpandido ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_categoria_categoria"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_habito" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

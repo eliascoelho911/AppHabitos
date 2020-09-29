@@ -5,13 +5,19 @@
 
     <data>
 
+        <variable
+            name="habito"
+            type="br.com.eliascoelho911.habitos.model.Habito" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardElevation="8dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/background_item_habito"
+        android:elevation="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,12 +28,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/poppins_bold"
+                android:fontFamily="@font/poppins_semibold"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:textSize="23sp"
-                app:autoSizeMaxTextSize="23sp"
-                app:autoSizeMinTextSize="19sp"
+                android:text="@{habito.nome}"
+                android:textSize="20sp"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeMinTextSize="17sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintEnd_toStartOf="@id/item_habito_nota"
@@ -64,10 +71,11 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/poppins"
                 android:maxLines="1"
+                android:text="@{habito.progressoDaMeta()}"
                 android:textColor="@android:color/black"
-                android:textSize="15sp"
-                app:autoSizeMaxTextSize="15sp"
-                app:autoSizeMinTextSize="13sp"
+                android:textSize="13sp"
+                app:autoSizeMaxTextSize="13sp"
+                app:autoSizeMinTextSize="10sp"
                 app:autoSizeStepGranularity="1sp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -77,5 +85,5 @@
                 tools:text="Faltam 37 dias para fixar o hábito!" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

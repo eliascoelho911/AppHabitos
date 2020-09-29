@@ -4,7 +4,8 @@ import androidx.annotation.ColorRes
 
 data class Categoria(
     val nome: String,
-    @ColorRes val cor: Int
+    @ColorRes val cor: Int,
+    val habitos: List<Habito>
 ) {
     fun getColor() = br.com.eliascoelho911.habitos.util.getColor(cor)
 }
