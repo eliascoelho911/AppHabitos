@@ -75,9 +75,4 @@ class TelaHabitosFragment : Fragment() {
         )
         categoriasRecyclerView.adapter = categoriasAdapter
     }
-
-    private fun exibeHabitos(categoria: Categoria) {
-
-    }
-
 }
