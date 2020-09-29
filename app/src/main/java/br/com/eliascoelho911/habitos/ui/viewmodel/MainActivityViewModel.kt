@@ -8,7 +8,7 @@ import org.joda.time.LocalDate
 
 class MainActivityViewModel : ViewModel() {
     val exibirCalendario = MutableLiveData(false)
-    val diaSelecionadoNoCalendario: MutableLiveData<LocalDate?> = MutableLiveData(null)
+    val diaSelecionadoNoCalendario: MutableLiveData<LocalDate> = MutableLiveData()
     var idRadioButtonSelecionadoNoCalendario: Int? = null
         private set
     val titulo = MutableLiveData(getString(R.string.app_name))

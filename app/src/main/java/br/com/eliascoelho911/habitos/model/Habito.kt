@@ -6,7 +6,8 @@ import org.joda.time.LocalDate
 data class Habito(
     val nome: String,
     val dataCriacao: LocalDate = LocalDate.now(),
-    val meta: Int
+    val meta: Int,
+    val dias: Dias
 ) {
     fun progressoDaMeta(): String {
         val hoje = LocalDate.now()

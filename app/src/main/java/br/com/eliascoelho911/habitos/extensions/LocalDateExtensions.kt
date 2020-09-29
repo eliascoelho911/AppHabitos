@@ -11,9 +11,9 @@ fun LocalDate.formata(pattern: String) = toString(pattern, locale)
 fun LocalDate.criaIntervaloDeDias(delta: Int): List<LocalDate> {
     return IntRange(0, abs(delta)).map {
         if (delta > 0) {
-            plusDays(delta - it)
+            plusDays(abs(delta) - it)
         } else {
-            minusDays(delta - it)
+            minusDays(abs(delta) - it)
         }
     }
 }

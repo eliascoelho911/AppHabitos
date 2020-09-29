@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_categoria.view.*
 import org.koin.java.KoinJavaComponent.inject
 
 class CategoriasAdapter(
-    private val categorias: List<Categoria>
+    private var categorias: List<Categoria>
 ) : ListAdapter<Categoria, CategoriasAdapter.CategoriaViewHolder>(DiffCallback) {
     private val context: Context by inject(Context::class.java)
 
@@ -28,12 +28,21 @@ class CategoriasAdapter(
         return CategoriaViewHolder(binding)
     }
 
+    fun atualiza(categorias: List<Categoria>) {
+        this.categorias = categorias
+        notifyDataSetChanged()
+    }
+
+    fun getCategorias() = categorias
+
+    private fun getCategoriasValidas() = categorias.filter { it.ehValida() }
+
     override fun onBindViewHolder(holder: CategoriaViewHolder, position: Int) {
-        holder.vincula(categorias[position])
+        holder.vincula(getCategoriasValidas()[position])
     }
 
     override fun getItemCount(): Int {
-        return categorias.size
+        return getCategoriasValidas().size
     }
 
     inner class CategoriaViewHolder(private val binding: ItemCategoriaBinding) :
@@ -59,7 +68,7 @@ class CategoriasAdapter(
         }
 
         private fun configuraAdapterDaListaDeHabitos(categoria: Categoria) {
-            habitosRecyclerView.adapter = HabitosAdapter(categoria.habitos)
+            habitosRecyclerView.adapter = HabitosAdapter(categoria.habitosDisponiveis)
         }
     }
 
