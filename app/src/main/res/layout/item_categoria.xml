@@ -83,11 +83,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/white"
+            android:elevation="2dp"
             android:visibility="@{elementos.estaExpandido ? View.VISIBLE : View.GONE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_categoria_categoria"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:itemCount="2"
             tools:listitem="@layout/item_habito" />
 
