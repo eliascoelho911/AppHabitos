@@ -55,7 +55,6 @@ class CategoriasAdapter(
         fun vincula(categoria: Categoria) {
             this.categoria = categoria
             configuraBinding(categoria)
-            configuraAdapterDaListaDeHabitos(categoria)
         }
 
         private fun configuraBinding(categoria: Categoria) {
@@ -63,6 +62,7 @@ class CategoriasAdapter(
             val elementosItemCategoria = ElementosItemCategoria()
             binding.elementos = elementosItemCategoria
             binding.onClick = View.OnClickListener {
+                configuraAdapterDaListaDeHabitos(categoria)
                 elementosItemCategoria.alterouEstado()
             }
         }
